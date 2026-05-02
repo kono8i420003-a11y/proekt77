@@ -3,24 +3,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { 
-  Zap, 
-  Sparkles, 
-  BrainCircuit, 
-  Code2, 
-  Rocket, 
-  Bot, 
-  Github, 
-  Youtube, 
-  Send, 
-  ArrowRight, 
-  Layers, 
+import {
+  Zap,
+  Sparkles,
+  BrainCircuit,
+  Code2,
+  Rocket,
+  Github,
+  Youtube,
+  Send,
+  ArrowRight,
+  Layers,
   CheckCircle2,
   Menu,
   X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useState, ReactNode } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 
 // --- Types ---
 
@@ -82,6 +81,8 @@ const SOCIAL_LINKS: SocialLink[] = [
   { platform: 'YouTube', url: 'https://youtube.com/@vibecoding', icon: <Youtube className="w-5 h-5" />, label: 'Уроки на YouTube' },
   { platform: 'GitHub', url: 'https://github.com/vibecoding', icon: <Github className="w-5 h-5" />, label: 'Наш репозиторий' }
 ];
+
+const CODE_LINE_PADDINGS = Array.from({ length: 40 }, () => Math.random() * 4);
 
 // --- Components ---
 
@@ -178,8 +179,8 @@ const HeroSection = () => {
         <div className="w-full h-full bg-neutral-900 rounded-[2rem] flex items-center justify-center relative group overflow-hidden">
            {/* Abstract code visual placeholder */}
            <div className="absolute inset-0 opacity-20 pointer-events-none p-8 font-mono text-xs overflow-hidden leading-relaxed">
-             {Array.from({length: 40}).map((_, i) => (
-                <div key={i} className="whitespace-nowrap" style={{ paddingLeft: `${Math.random() * 4}rem` }}>
+             {CODE_LINE_PADDINGS.map((pad, i) => (
+                <div key={i} className="whitespace-nowrap" style={{ paddingLeft: `${pad}rem` }}>
                   {`const vibe = async () => await ai.create({ v: "concept", context: ${i % 2 === 0 ? '"creative"' : '"optimized"'} });`}
                 </div>
              ))}
@@ -324,6 +325,14 @@ const Footer = () => {
 };
 
 export default function App() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <main className="font-sans">
       <Navbar />
@@ -331,16 +340,20 @@ export default function App() {
       <FeaturesSection />
       <CurriculumSection />
       <Footer />
-      
-      {/* Scroll to top button (optional helper) */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-colors z-40"
-      >
-        <ArrowRight className="w-6 h-6 -rotate-90" />
-      </motion.button>
+
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-colors z-40"
+          >
+            <ArrowRight className="w-6 h-6 -rotate-90" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
