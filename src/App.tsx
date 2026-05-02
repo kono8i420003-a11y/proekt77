@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect, ReactNode } from 'react';
+import AIAssistant from './components/AIAssistant';
 
 // --- Types ---
 
@@ -603,6 +604,30 @@ const TestimonialsSection = () => (
   </section>
 );
 
+const AISection = () => (
+  <section className="py-24 px-6 max-w-4xl mx-auto">
+    <div className="flex flex-col items-center mb-12 text-center">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 text-neon-cyan text-xs font-bold uppercase tracking-wider mb-6">
+        <Sparkles className="w-3 h-3" />
+        Попробуй прямо сейчас
+      </div>
+      <h2 className="font-display font-bold text-4xl md:text-5xl mb-4">
+        Задай вопрос <span className="text-neon-cyan">AI-ассистенту</span>
+      </h2>
+      <p className="text-white/70 max-w-xl">
+        Не уверен, подойдёт ли тебе курс? Спроси — ИИ ответит честно и мгновенно
+      </p>
+    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <AIAssistant />
+    </motion.div>
+  </section>
+);
+
 const PricingSection = () => (
   <section className="py-24 px-6 max-w-3xl mx-auto">
     <div className="flex flex-col items-center mb-16 text-center">
@@ -724,6 +749,7 @@ export default function App() {
       <FeaturesSection />
       <CurriculumSection />
       <TestimonialsSection />
+      <AISection />
       <PricingSection />
       <Footer />
 
