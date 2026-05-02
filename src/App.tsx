@@ -20,7 +20,6 @@ import {
   Star,
   Check,
   Globe,
-  Bot,
   Cpu,
   Briefcase,
   GraduationCap,
@@ -162,24 +161,24 @@ const AUDIENCE: AudienceItem[] = [
 
 const RESULTS: ResultCard[] = [
   {
-    icon: <Globe className="w-7 h-7 text-neon-cyan" />,
-    title: 'Сделаешь лендинг',
-    description: 'Профессиональный сайт с нуля за несколько часов',
+    icon: <Rocket className="w-7 h-7 text-neon-cyan" />,
+    title: 'Сделаешь первый AI-проект',
+    description: 'Настоящее приложение с ИИ, которое ты покажешь работодателю или клиенту',
   },
   {
-    icon: <Bot className="w-7 h-7 text-neon-blue" />,
-    title: 'Создашь AI-бота',
-    description: 'Telegram-бот с искусственным интеллектом для бизнеса',
+    icon: <Globe className="w-7 h-7 text-neon-blue" />,
+    title: 'Научишься быстро делать лендинги',
+    description: 'Профессиональный сайт с нуля — за часы, а не недели',
   },
   {
     icon: <Zap className="w-7 h-7 text-neon-purple" />,
-    title: 'Автоматизируешь задачу',
-    description: 'Освободишь часы рутинной работы с помощью ИИ',
+    title: 'Автоматизируешь задачи',
+    description: 'Освободишь часы рутинной работы, передав их ИИ',
   },
   {
-    icon: <Rocket className="w-7 h-7 text-neon-cyan" />,
-    title: 'Запустишь MVP',
-    description: 'Полноценный продукт, готовый к первым пользователям',
+    icon: <BrainCircuit className="w-7 h-7 text-neon-cyan" />,
+    title: 'Поймёшь архитектуру AI-продуктов',
+    description: 'Научишься думать как продакт: структура, логика, монетизация',
   },
 ];
 
@@ -217,14 +216,14 @@ const CODE_LINE_PADDINGS = Array.from({ length: 40 }, () => Math.random() * 4);
 const CTABlock = ({ className = '' }: { className?: string }) => (
   <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${className}`}>
     <button className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-black font-extrabold text-lg hover:scale-105 active:scale-95 transition-all glow-blue group flex items-center justify-center gap-2">
-      Начать обучение
+      Начать обучение за 2 минуты
       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
     </button>
     <a
       href="#curriculum"
       className="w-full sm:w-auto px-8 py-4 rounded-2xl glass font-bold text-lg hover:bg-white/10 transition-colors text-center"
     >
-      Посмотреть программу
+      Смотреть программу
     </a>
   </div>
 );
@@ -306,21 +305,24 @@ const HeroSection = () => (
       </div>
 
       <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.1] mb-6">
-        Научись создавать сайты<br />
-        и AI-продукты{' '}
-        <span className="text-gradient">за 7 дней</span>
-        <br />без кода
+        Создавай сайты и AI-продукты{' '}
+        <span className="text-gradient">за дни,</span>
+        <br />а не месяцы
       </h1>
 
       <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed">
-        От идеи до готового продукта с помощью ИИ — даже если ты новичок
+        Практический курс по разработке с ИИ — от идеи до готового продукта без лишнего кода
       </p>
 
       <ul className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-        {['Без программирования', 'С реальными кейсами', 'С поддержкой'].map((item) => (
-          <li key={item} className="flex items-center gap-2 text-white/90 text-sm font-medium">
-            <Check className="w-4 h-4 text-neon-cyan shrink-0" />
-            {item}
+        {[
+          { emoji: '🚀', text: 'Без глубокого программирования' },
+          { emoji: '🤖', text: 'С использованием ChatGPT / Claude' },
+          { emoji: '💼', text: 'Под реальные задачи и проекты' },
+        ].map((item) => (
+          <li key={item.text} className="flex items-center gap-2 text-white/90 text-sm font-medium">
+            <span>{item.emoji}</span>
+            {item.text}
           </li>
         ))}
       </ul>
@@ -426,10 +428,10 @@ const FeaturesSection = () => (
   <section id="features" className="py-24 px-6 max-w-7xl mx-auto">
     <div className="flex flex-col items-center mb-16 text-center">
       <h2 className="font-display font-bold text-4xl md:text-5xl mb-4">
-        Будущее <span className="text-neon-cyan">уже здесь</span>
+        Почему этот <span className="text-neon-cyan">подход работает</span>
       </h2>
       <p className="text-white/70 max-w-xl">
-        Меняем парадигму разработки. Теперь ты — архитектор смыслов, а ИИ — твой универсальный строитель.
+        Вайбкодинг — не магия. Это конкретная методология: ты управляешь результатом, ИИ пишет код.
       </p>
     </div>
 
